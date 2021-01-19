@@ -28,9 +28,13 @@ jobs:
         git config --global user.email "borisdehoumon@gmail.com"
         git config --global user.name "Boris DEHOUMON"
         git add build_production -f && git commit -m "Build for deploy support"
-    - name: Deploy website
-      run: |
-        git remote set-url origin https://${{secrets.DEPLOY_KEY}}@github.com/dehboris/support-dev-mobile.git
-        git branch -M main
-        git push -u origin main
+    - name: Pushes to support repository
+        uses: cpina/github-action-push-to-another-repository@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.DEPLOY_KEY }}
+        with:
+          source-directory: 'build_production'
+          destination-github-username: 'dehboris'
+          destination-repository-name: 'support-dev-mobile'
+          user-email: borisdehoumon@gmail.com
   
