@@ -28,14 +28,8 @@ jobs:
         git config --global user.email "borisdehoumon@gmail.com"
         git config --global user.name "Boris DEHOUMON"
         git add build_production -f && git commit -m "Build for deploy support"
-    - name: Pushes to support repository
-      uses: cpina/github-action-push-to-another-repository@master
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.DEPLOY_KEY }}
-      with:
-        source-directory: 'build_production'
-        destination-github-username: 'dehboris'
-        destination-repository-name: 'support-dev-mobile'
-        target-branch: 'main'
-        user-email: borisdehoumon@gmail.com
+    - name: Move to build dir
+      run: |
+        cd build_production
+        ls -l
   
