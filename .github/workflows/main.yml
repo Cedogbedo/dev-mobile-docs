@@ -36,5 +36,6 @@ jobs:
         source-directory: 'build_production'
         destination-github-username: 'dehboris'
         destination-repository-name: 'support-dev-mobile'
+        target-branch: 'main'
         user-email: borisdehoumon@gmail.com
   
